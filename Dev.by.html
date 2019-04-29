@@ -1,0 +1,37 @@
+<html lang="en">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,
+initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dev.by</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+    <div id="Logo" onclick="slowScroll('#top')">
+        <span>DEV.BY</span>
+    </div>
+    <div>
+        <div id="about">
+                <a href="https://dev.by/feed" title="Лента" onclick="slowScroll('#main')"Лента></a>
+                <a href="https://jobs.dev.by" onclick="slowScroll('#overiew')" title="Вакансии">Вакансии</a>
+                <a href="https://events.dev.by" onclick="slowScroll('#contacts')" title="Вакансии">События</a>
+                <a href="https://salaries.dev.by" onclick="slowScroll('#flag')" title="Вакансии">Зарплаты</a>
+                <a href="https://companies.dev.by" onclick="slowScroll('#flag')" title="Вакансии">Компании</a>
+                <a href="https://dev.by/sandbox" onclick="slowScroll('#overiew')" title="Вакансии">Песочница</a>
+       </div>
+</header>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+    function slowScroll(id)  {
+        $('body').animate({
+    scrollTop: $(id).offset().top
+        },500);
+    }
+</script>
+</body>
+
+</html>

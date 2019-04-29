@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+*  {
+    margin: 0%;
+    padding: 0%;
+    outline: none;
+}
+
+body,html  {
+    width: 100%;
+    height: 2000px;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+    font-family: Trebuchet MS, Helvetica;
+}
+
+header  {
+    width: 100%;
+    padding: 10px 1.0% 0px 1.0%;
+    background: transparent;
+    float: left;
+    position: fixed;
+}
+
+header #logo  {
+color: rgb(16, 0, 247);
+cursor: pointer;
+}
+
+header #logo span {
+    font-size: 1.8em;
+    line-height: 46px;
+    margin-left: 40px;
+    font-family: 'Suez One', serif;
+}
+
+#about  {
+    float: right;
+    width: 70%;
+}
+
+@media (min-width: 702px)  {
+    #logo  {
+        float: left;
+        width: 30%;
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 700px)  {
+    #logo  {
+        margin-top: 15px;
+        width: 100%;
+        font-size: 1.8em;
+    }
+}
+
+#about  {
+    float: left;
+    width: 100%;
+}
+
+#about  {
+    text-align: center;
+    font-size: 1em;
+    line-height: 40px;
+    margin-bottom: 10px;
+}
+
+#about > a{color: rgb(17, 0, 255)}
+
+#about > a:hover {
+    color: rgb(77, 68, 68);
+text-decoration: underline;
+}
+
+#about > a{color: rgb(4, 0, 252)}
+
+#about > a:not(:last-child)  {
+    margin-right: 7%;
+}
+
+.fixed  {
+    z-index: 5000;
+    background-color: aliceblue;
+    border-bottom: 1px solid silver;
+}
