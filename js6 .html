@@ -1,0 +1,25 @@
+<html>
+
+<head>
+    <script>
+
+        let x = 0;
+        let y = 1;
+        let s;
+
+        if (x - y === 0)  {
+            s = Math.pow(x, 2) + Math.cbrt(y) + Math.sin(y);
+        } 
+        
+        else if (x - y > 0)  {
+            s = Math.pow(x - y, 2) + Math.log10(Math.abs(x));
+        } 
+        
+        else {
+            s = Math.pow(x - y, 2) + Math.tan(y);
+        }
+        
+        
+        console.log(s);
+    </script>
+</head>
