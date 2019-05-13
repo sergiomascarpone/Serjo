@@ -2,42 +2,35 @@
 <meta charset="utf-8">
 
 <head>
-    <script>
-        let Mam = 'Mam';
-        let Pap = 'Pap';
-        let plus = ' + ';
-        let ravno = ' = ';
-        let i = 'I';
-        let a = Mam + plus + Pap + ravno + i;
 
-        if (Pap && Mam) {
-            sent = Mam + plus + Pap + ravno + i;
-        } else if (Mam || Pap) {
-            sent = (Mam || Pap) + i + ravno + 'family'
+
+    <script>
+
+
+        const startSallary = 500;
+        const growth = 300;
+        const firstCareerStageCoeficient = 1.5;
+        const secondCareerStageCoeficient = 0.75;
+
+        let currentSallary = startSallary;
+
+        for (let year = 0; year < 20; year = year + 1) {
+            if (year < 3) {
+                currentSallary = currentSallary + growth * firstCareerStageCoeficient;
+            } else if (year > 6) {
+                currentSallary = currentSallary + growth * secondCareerStageCoeficient;
+
+            } else {
+                currentSallary = currentSallary + growth;
+            }
+            console.log(currentSallary);
         }
 
 
-        console.log(a);
+
+
+
     </script>
-    <link href="styles.css" rel="stylesheet" />
 </head>
-
-<body>
-    <div class="buttom">
-
-    </div>
-
-    <div class="header">
-
-    </div>
-
-    <div class="content">
-
-    </div>
-
-    <div class="footer">
-
-    </div>
-</body>
 
 </html>
