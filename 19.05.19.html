@@ -1,0 +1,76 @@
+<html>
+<meta charset="utf-8">
+
+<head>
+
+
+
+
+    <script>
+
+
+        window.onload = () => {
+            const users = [
+                {
+                    name: 'Nikita',
+                    email: 'Nikita@nikita.nikita',
+                    phone: '12839494900300303',
+                    img: 'https://bipbap.ru/wp-content/uploads/2017/04/leto_derevo_nebo_peyzazh_dom_derevya_domik_priroda_3000x2000.jpg',
+                },
+                {
+                    name: 'Vlad',
+                    email: 'vladgdjtresst.com',
+                    phone: '1283949403',
+                    img: 'https://bipbap.ru/wp-content/uploads/2017/04/leto_derevo_nebo_peyzazh_dom_derevya_domik_priroda_3000x2000.jpg',
+                },
+                {
+                    name: 'Vika',
+                    email: 'vikanetinner@.com',
+                    phone: '128300303',
+                    img: 'https://bipbap.ru/wp-content/uploads/2017/04/leto_derevo_nebo_peyzazh_dom_derevya_domik_priroda_3000x2000.jpg',
+                }
+
+            ];
+
+            const table = document.createElement('table');
+
+            users.forEach((user) => {
+                const row = document.createElement('tr');
+
+                const nameCell = document.createElement('td');
+                nameCell.innerHTML = user.name;
+                row.appendChild(nameCell);
+
+                const emailCell = document.createElement('td');
+                emailCell.innerHTML = user.email;
+                row.appendChild(emailCell);
+
+                const phoneCell = document.createElement('td');
+                phoneCell.innerHTML = user.phone;
+                row.appendChild(phoneCell);
+
+                const imgCell = document.createElement('td');
+                const img = document.createElement('img');
+                img.style.width = 100;
+                img.src = user.img;
+                imgCell.appendChild(img);
+                row.appendChild(imgCell);
+
+
+                table.appendChild(row);
+            });
+            const root = document.querySelector('#root');
+            root.appendChild(table);
+
+        }
+
+    </script>
+    <link href="styles.css" rel="styleshit" />
+
+<body>
+
+    <div id='root'></div>
+</body>
+</head>
+
+</html>
