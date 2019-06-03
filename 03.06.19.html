@@ -1,0 +1,47 @@
+<html>
+<meta charset="utf-8">
+
+<head>
+
+
+
+
+    <script>
+        console.time('timer');
+        window.onload = () => {
+            fetch('https://catalog.api.onliner.by/search/mobile?group=1')
+                .then(response => response.json())
+                .then(data => {
+                    const phones = data.products;
+                    const root = document.querySelector('#root');
+                    const table = document.createElement('table');
+
+
+                    phones.forEach(phone => {
+                        const row = document.createElement('tr');
+
+                        const nameCell = document.createElement('td');
+                        nameCell.innerHTML = phone.full_name;
+                        row.appendChild(nameCell);
+                        table.appendChild(row);
+
+                    });
+                    root.appendChild(table);
+                })
+        }
+
+
+    </script>
+    <link href="styles.css" rel="stylesheet" />
+
+
+<body>
+    <div id='root'></div>
+
+
+
+
+</body>
+</head>
+
+</html>
