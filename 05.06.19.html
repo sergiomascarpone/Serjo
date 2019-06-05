@@ -1,0 +1,72 @@
+<html>
+<meta charset="utf-8">
+
+<head>
+
+
+
+
+    <script>
+
+        window.onload = () => {
+            fetch('https://catalog.api.onliner.by/search/bed?b_child=1&group=1')
+                .then(response => response.json())
+                .then(data => {
+                    const beds = data.products.sort((bed1, bed2) => {
+
+                        console.log(bed1, bed2)
+                        return (bed1.prices.min - bed2.prices.min)
+                    });
+
+                    const root = document.querySelector('#root');
+                    const table = document.createElement('table');
+
+                    beds.forEach(bed => {
+
+
+
+                        const row = document.createElement('tr');
+
+                        const nameCell = document.createElement('td');
+                        nameCell.innerHTML = bed.full_name;
+                        row.appendChild(nameCell);
+
+                        const pricesCell = document.createElement('td');
+                        const pricesmin = bed.prices.min;
+                        const pricesmax = bed.prices.max;
+
+                        pricesCell.innerHTML = pricesmin + '-' + pricesmax;
+                        row.appendChild(pricesCell);
+
+                        const imgCell = document.createElement('td');
+                        const img = document.createElement('img');
+
+                        img.src = 'http:' + bed.images.header;
+                        img.style.width = 100;
+                        imgCell.appendChild(img);
+                        row.appendChild(imgCell);
+
+                        table.appendChild(row);
+
+                    });
+                    root.appendChild(table);
+                    console.log(data);
+                })
+        }
+
+
+
+    </script>
+    <link href="styles.css" rel="stylesheet" />
+
+
+<body>
+    <div id='root'></div>
+
+
+
+
+</body>
+</head>
+
+</html>
