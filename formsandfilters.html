@@ -1,0 +1,99 @@
+<html>
+
+ <head>
+    <script>
+        const registration = (element) => {
+            const email = document.querySelector('#email').value;
+            const password = document.querySelector('#password').value;
+            const repeatPassword = document.querySelector('#repeatPassword').value;
+            console.log(email, password);
+            let errorsCount = 0;
+
+            
+            if (password.length < 6) {
+                if (!document.querySelector('#passErr')) {
+                    const passwordContainer = document.querySelector('#passwordContainer');
+                    const errEl = document.createElement('span');
+                    errEl.innerHTML = 'pass too short';
+                    errEl.id = 'passErr';
+                    errEl.style.color = 'red';
+                    passwordContainer.appendChild(errEl);
+                }
+                setTimeout(() => {
+                    const errEl = document.querySelector('#passErr');
+                    errEl.remove();
+                }, 1300);
+                errorsCount++;
+            } else {
+                if (document.querySelector('#passErr')) {
+                    const errEl = document.querySelector('#passErr');
+                    errEl.remove();
+                }
+            }
+
+            if (!email.includes('@')) {
+                if (!document.querySelector('#emailErr')) {
+                    const emailContainer = document.querySelector('#emailContainer');
+                    const errEl = document.createElement('span');
+                    errEl.innerHTML = 'wrong Email';
+                    errEl.id = 'emailErr';
+                    errEl.style.color = 'red';
+                    emailContainer.appendChild(errEl);
+                }
+                setTimeout(() => {
+                    const errEl = document.querySelector('#emailErr')
+                    errEl.remove('');
+                }, 1500)
+                errorsCount++;
+            } else {
+                if (document.querySelector('#emailErr')) {
+                    const errEl = document.querySelector('#emailErr');
+                    errEl.remove();
+                }
+            }
+
+            if (password != repeatPassword) {
+                if (!document.querySelector('#repeatPasswordErr')) {
+                    const repeatPasswordContainer = document.querySelector('#repeatPasswordContainer');
+                    const errEl = document.createElement('span');
+                    errEl.innerHTML = 'Please repeatPassword';
+                    errEl.id = 'repeatPasswordErr';
+                    errEl.style.color = 'red';
+                    repeatPasswordContainer.appendChild(errEl);
+                }
+                setTimeout(() => {
+                    const errEl = document.querySelector('#repeatPasswordErr')
+                    errEl.remove('');
+                }, 1700)
+                errorsCount++;
+            } else {
+                if (document.querySelector('#repeatPasswordErr')) {
+                    const errEl = document.querySelector('#repeatPasswordErr');
+                    errEl.remove();
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <div id='emailContainer'>
+            Email
+            <input type='text' id='email'>
+        </div>
+
+        <div id="passwordContainer">
+            Password
+            <input type='password' id='password'>
+        </div>
+
+        <div id='repeatPasswordContainer'>
+            Repeat password
+            <input type='password' id='repeatPassword'>
+        </div>
+
+        <button onclick='registration()'> Регистрация</button>
+    </div>
+</body>
+</html> 
