@@ -1,0 +1,72 @@
+<html>
+<head>
+
+    <script>
+        window.onload = () =>  {
+
+            fetch('https://catalog.api.onliner.by/search/notebook?group=1')
+                .then(response => response.json())
+                .then(data => {
+                    const notebooks = data.products.sort((notebook1, notebook2) => {
+                        console.log(notebook1, notebook2)
+                        return (notebook1.prices.min - notebook2.prices.min)
+                    });
+                    const root = document.querySelector('#root');
+                    const table = document.createElement('table');
+                    notebooks.forEach(notebook => {
+                        const row = document.createElement('tr');
+                        const nameCell = document.createElement('td');
+                        nameCell.innerHTML = notebook.full_name;
+                        row.appendChild(nameCell);
+                        const namePrefixCell = document.createElement('td');
+                        namePrefixCell.innerHTML = notebook.name_prefix;
+                        row.appendChild(namePrefixCell);
+                        const pricesCell = document.createElement('td');
+                        const pricesmin = notebook.prices.min;
+                        const pricesmax = notebook.prices.max;
+                        const imgCell = document.createElement('td');
+                        const img = document.createElement('img');
+                        img.src = 'http:' + notebook.images.header;
+                        img.style.height = 100;
+                        imgCell.appendChild(img);
+                        row.appendChild(imgCell);
+                        pricesCell.innerHTML = pricesmin + '-' + pricesmax;
+                        row.appendChild(pricesCell);
+                        table.appendChild(row);
+                        table.classList.add('table_1');
+                    });
+                    root.appendChild(table);
+                });
+            const filteredPrices = document.querySelector('#filter-Price-All');
+            filteredPrices.addEventListener('click', () => {
+                const filteredNoteBook = notebook
+                    .filter(notebook => notebook1.pricesmin - notebook2.pricesmin);
+                console.log(filteredNoteBook);
+            });
+                const filteredName = document.querySelector('#filter-Name-Apple');
+                filteredName.addEventListener('click', () => {
+                const filteredNoteBook = name
+                .filter(notebook => name === 'Apple');
+                console.log(filteredNoteBook);
+                
+            });
+        }
+        
+    </script>
+    <style>
+        .table_1 td {
+            border: solid rgb(146, 3, 10) 1px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <button id='filter-Price-All'> Min Price </button>
+    <button id="filter-Name-Apple">Apple</button>
+
+    <div id='root'></div>
+
+</body>
+
+</html>
