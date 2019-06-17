@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <link rel='stylesheet' href='styles.css'>
+    <script>
+        window.onload = () => {
+            let penniboards = [];
+            const renderTable = (data) => {
+                const table = document.createElement('table');
+                data.forEach((penniboard) => {
+
+                    const row = document.createElement('tr');
+                    const td = document.createElement('td');
+                    td.innerHTML = penniboard.full_name;
+                    row.appendChild(td);
+                    table.appendChild(row);
+                });
+
+
+                const root = document.querySelector('#root');
+                root.innerHTML = '';
+                root.appendChild(table);
+            }
+
+            fetch('https://catalog.api.onliner.by/search/skateboard')
+                .then(response => response.json())
+                .then(date => {
+                    penniboards = date.products;
+                    renderTable(penniboards);
+                });
+
+            const sortButton = document.querySelector('#button');
+            sortButton.addEventListener('click', () => {
+                const sortedData = penniboards.sort((a, b) => {
+                    let aName = a.full_name.toLowerCase();
+                    let bName = b.full_name.toLowerCase();
+
+                    if (aName > bName) {
+                        return 1
+                    }
+
+                    if (aName < bName) {
+                        return -1
+                    }
+
+
+                    return 0;
+                });
+                renderTable(sortedData);
+
+            })
+        }
+
+
+    </script>
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <button id='button'>mk;lkml</button>
+
+
+    <div id='root'></div>
+
+</body>
+
+</html>
