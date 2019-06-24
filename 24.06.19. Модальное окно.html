@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <link rel='stylesheet' href='styles24.06.css'>
+    <script>
+        window.onload = () => {
+            const openModalBunnon = document.querySelector('#open-modal');
+
+            openModalBunnon.addEventListener('click', () => {
+                const modal = document.querySelector('#modal');
+
+                modal.style.display = 'block';
+                const modalShadow = document.querySelector('.modal-shadow');
+
+                modalShadow.style.display = 'block';
+            })
+            const cancelModelButton = document.querySelector('#cancel');
+
+            cancelModelButton.addEventListener('click', () => {
+                const closeModal = document.querySelector('#modal');
+                closeModal.style.display = 'none';
+            })
+
+        }
+    </script>
+
+
+</head>
+
+<body>
+    <div id="root">
+        <button id="open-modal">Open Modal</button>
+    </div>
+    <div id="modal" class="modal">
+        <div>Title</div>
+        <div class='body'>
+            <div>fhdjhfshdjfhdhfsj</div>
+            <div>fhdjhfshdjfhdhfsj</div>
+            <div>fhdjhfshdjfhdhfsj</div>
+        </div>
+        <div class="footer">
+            <button id="cancel">CANCEL</button>
+        </div>
+
+    </div>
+    <div class="modal-shadow"></div>
+
+
+</body>
+
+</html>
