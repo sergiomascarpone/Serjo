@@ -1,0 +1,100 @@
+<html>
+
+<head>
+    <link rel='stylesheet' href='styles24.06.css'>
+    <script>
+        window.onload = () => {
+            const openModalBunnon = document.querySelector('#open-modal');
+            openModalBunnon.addEventListener('click', () => {
+
+                const modal = document.querySelector('#modal');
+                modal.style.display = 'block';
+
+                const modalShadow = document.querySelector('.modal-shadow');
+                modalShadow.style.display = 'block';
+            })
+            const cancelModalButton = document.querySelector('#cancel');
+            cancelModalButton.addEventListener('click', () => {
+
+                const closeModal = document.querySelector('#modal');
+                closeModal.style.display = 'none';
+
+                const closeModalShadow = document.querySelector('.modal-shadow');
+                closeModalShadow.style.display = 'none';
+            })
+            
+        }
+    </script>
+
+
+</head>
+
+<body>
+    <div id="root">
+        <button id="open-modal">Events</button>
+    </div>
+    
+    <div id="modal" class="modal">
+        <div>Add User</div>
+        <div class='body'>
+                <form>
+                    <div class="body">
+                    <label for="recipient-name" class="col-form-label">Email:</label>
+                    <input type="text" class="form-control" id="recipient-name">
+        </div>
+                    <div class="body">
+                                <label for="message-text" class="col-form-label">Name:</label>
+                                <textarea class="form-control" id="message-text"></textarea>
+        </div>
+                            </form>
+
+        </div>
+        <div class="footer">
+                <button type="#modal" class="#modal" data-dismiss="#cancel">Cancel</button>
+                <button type="#modal" class="#cancel">Add</button>
+            </div>
+
+    </div>
+    <div class="modal-shadow"></div>
+
+
+</body>
+
+</html>
+
+
+.header {
+    border-bottom: 4px solid;
+    text-align: center;
+}
+.modal {
+    display: none;
+    background: rgb(221, 172, 172);
+    width: 300px;
+    height: 200px;
+    border: solid 3px;
+    border-radius: 5px;
+    position: absolute;
+    top: calc(50% - 100px);
+    left: calc(50% - 150px);
+    z-index: 2;
+}
+.body {
+    height: 30px;
+    padding: 10px
+}
+.modal-shadow {
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: none;
+    z-index: 1;
+    position: absolute;
+    opacity: 0.5;
+}
+.footer{
+    text-align: right;
+    margin-top: 100px;
+   
+    
+}
