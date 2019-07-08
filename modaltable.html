@@ -61,19 +61,29 @@
                     row.appendChild(nameCell);
 
                     const actionCell = document.createElement('td');
-
                     const deleteButton = document.createElement('button');
                     deleteButton.innerHTML = 'delete';
                     deleteButton.addEventListener('click', () => {
                         deleteUser(index);
+                    });
+                    actionCell.appendChild(deleteButton)
 
-
-
+                    const editButton = document.createElement('button');
+                    editButton.innerHTML = 'edit';
+                    editButton.addEventListener('click', () => {
                         console.log(index);
+                        const modal = document.querySelector('#modal');
+                        modal.style.display = 'block';
+                        const modalShadow = document.querySelector('.modal-shadow');
+                        modalShadow.style.display = 'block';
+                        const emailInpt = document.querySelector('#email');
+                        const nameInpt = document.querySelector('#name');
+                        emailInpt.value = '';
+                        nameInpt.value = '';
 
                     });
+                    actionCell.appendChild(editButton)
 
-                    actionCell.appendChild(deleteButton)
                     row.appendChild(actionCell);
                     table.appendChild(row);
 
