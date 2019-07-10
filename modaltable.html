@@ -1,11 +1,69 @@
 <html>
-<link rel="stylesheet" href="styles24.css">
 
 <head>
-
-
+    <link rel="stylesheet" href="styles24.css">
     <script>
         window.onload = () => {
+            let users;
+
+            if (localStorage.getItem('users')) {
+                users = JSON.parse(localStorage.getItem('users'));
+            } else {
+                users = [];
+            }
+
+            const deleteUser = (index) => {
+                users = users.filter((user, ind) => ind !== index);
+                renderTable()
+            };
+            const openEdit = (index) => {
+                const user = users.filter((user, ind) => ind === index)[0];
+                const modal = document.querySelector('#modal');
+                modal.style.display = 'block';
+                modal.index = index;
+                const modalShadow = document.querySelector('.modal-shadow');
+                modalShadow.style.display = 'block';
+                const emailInpt = document.querySelector('#email');
+                const phoneInpt = document.querySelector('#phone');
+                const indexInpt = document.querySelector('#index');
+                emailInpt.value = user.email;
+                phoneInpt.value = user.phone;
+                indexInpt.value = index;
+            }
+            function renderTable() {
+                const root = document.querySelector('#root');
+                root.innerHTML = '';
+                const table = document.createElement('table');
+
+                users.forEach((user, index) => {
+                    const tr = document.createElement('tr');
+                    const emailCell = document.createElement('td');
+                    emailCell.innerHTML = user.email;
+                    tr.appendChild(emailCell);
+
+                    const phoneCell = document.createElement('td');
+                    phoneCell.innerHTML = user.phone;
+                    tr.appendChild(phoneCell);
+
+                    const actionsCell = document.createElement('td');
+                    const deleteButton = document.createElement('button');
+                    deleteButton.innerHTML = 'delete';
+                    deleteButton.addEventListener('click', () => {
+                        deleteUser(index);
+                    });
+                    actionsCell.appendChild(deleteButton)
+                    const editButton = document.createElement('button');
+
+                    editButton.innerHTML = 'edit';
+                    editButton.addEventListener('click', () => {
+                        openEdit(index)
+                    });
+                    actionsCell.appendChild(editButton)
+                    tr.appendChild(actionsCell);
+                    table.appendChild(tr);
+                })
+                root.appendChild(table);
+            };
             const closeModal = () => {
                 const modal = document.querySelector('#modal');
                 modal.style.display = 'none';
@@ -13,178 +71,77 @@
                 const modalShadow = document.querySelector('.modal-shadow');
                 modalShadow.style.display = 'none';
 
-                const email = document.querySelector('#email');
-
-                const name = document.querySelector('#name');
-                email.value = '';
-                name.value = '';
+                const emailInpt = document.querySelector('#email');
+                const phoneInpt = document.querySelector('#phone');
+                const indexInpt = document.querySelector('#index');
+                emailInpt.value = '';
+                phoneInpt.value = '';
+                indexInpt.value = '';
             };
-            const cancelModelButton = document.querySelector('#cancel');
+            const cancelBtn = document.querySelector('#cancel');
 
             const modalShadow = document.querySelector('.modal-shadow');
-
-            const closeButton = document.querySelector('#close');
-
-            cancelModelButton.addEventListener('click', closeModal);
+            cancelBtn.addEventListener('click', closeModal);
             modalShadow.addEventListener('click', closeModal);
-            closeButton.addEventListener('click', closeModal);
 
-            const openModelButton = document.querySelector('#open-model');
-            openModelButton.addEventListener('click', () => {
+            const openModalButton = document.querySelector('#open-modal');
+            openModalButton.addEventListener('click', () => {
                 const modal = document.querySelector('#modal');
                 modal.style.display = 'block';
 
                 const modalShadow = document.querySelector('.modal-shadow');
                 modalShadow.style.display = 'block';
-            })
-            let users = [];
-            const deleteUser = (index) => {
-                users = users.filter((user, ind) => ind !== index);
-                // renderTable()
-                usersTable();
-            };
-            function usersTable() {
-                const table = document.createElement('table');
-                const root = document.querySelector('#root')
+            });
+            const submiotBtn = document.querySelector('#submit');
 
-                users.forEach((user, index) => {
-                    const row = document.createElement('tr');
-
-                    const emailCell = document.createElement('td');
-                    emailCell.innerHTML = user.emailInpt;
-
-                    row.appendChild(emailCell);
-
-                    const nameCell = document.createElement('td');
-                    nameCell.innerHTML = user.nameInpt;
-
-                    row.appendChild(nameCell);
-
-                    const actionCell = document.createElement('td');
-                    const deleteButton = document.createElement('button');
-                    deleteButton.innerHTML = 'delete';
-                    deleteButton.addEventListener('click', () => {
-                        deleteUser(index);
-                    });
-                    actionCell.appendChild(deleteButton)
-
-                    const editButton = document.createElement('button');
-                    editButton.innerHTML = 'edit';
-                    editButton.addEventListener('click', () => {
-                        console.log(index);
-                        const modal = document.querySelector('#modal');
-                        modal.style.display = 'block';
-                        const modalShadow = document.querySelector('.modal-shadow');
-                        modalShadow.style.display = 'block';
-                        const emailInpt = document.querySelector('#email');
-                        const nameInpt = document.querySelector('#name');
-                        emailInpt.value = '';
-                        nameInpt.value = '';
-
-                    });
-                    actionCell.appendChild(editButton)
-
-                    row.appendChild(actionCell);
-                    table.appendChild(row);
-
-                });
-                root.innerHTML = '';
-                root.appendChild(table);
-            }
-            const addButton = document.querySelector('#add')
-
-            addButton.addEventListener('click', () => {
+            submiotBtn.addEventListener('click', () => {
                 const emailInpt = document.querySelector('#email');
-                const nameInpt = document.querySelector('#name');
-                let user = {};
-                user.nameInpt = nameInpt.value;
-                user.emailInpt = emailInpt.value;
-                users.push(user);
+                const phoneInpt = document.querySelector('#phone');
+                const indexInpt = document.querySelector('#index');
+                const index = indexInpt.value;
+                console.log(index)
+
+                const user = {
+                    email: emailInpt.value,
+                    phone: phoneInpt.value,
 
 
-                usersTable(users);
-                if (!emailInpt.value.includes('@')) {
-                    if (!document.querySelector('#emailErr')) {
-                        const emailBox = document.querySelector('#emailError');
-
-                        const errEl = document.createElement('span');
-                        errEl.innerHTML = 'wrong Email';
-                        errEl.id = 'emailErr';
-                        errEl.style.color = 'red';
-                        emailBox.appendChild(errEl);
-                    }
-                    setTimeout(() => {
-                        const errEl = document.querySelector('#emailErr')
-                        errEl.remove('');
-                    }, 1500);
-                }
-                if (nameInpt.value.length < 4) {
-                    if (!document.querySelector('#nameErr')) {
-                        const nameBox = document.querySelector('#nameError');
-                        const errEl = document.createElement('span');
-                        errEl.innerHTML = 'name too short';
-                        errEl.id = 'nameErr';
-                        errEl.style.color = 'red';
-                        nameBox.appendChild(errEl);
-                    }
-                    setTimeout(() => {
-                        const errEl = document.querySelector('#nameErr');
-                        errEl.remove('');
-                    }, 1500);
+                };
+                if (index !== '') {
+                    users[Number(index)] = user;
                 } else {
-                    if (emailInpt.value.includes('@') && (nameInpt.value.length > 4))
-                        console.log({
-                            email: emailInpt.value,
-                            name: nameInpt.value,
-                        });
+                    users.push(user);
                 }
+                localStorage.setItem('users', JSON.stringify(users))
+
+                renderTable();
+                closeModal();
             });
         }
     </script>
-
 </head>
 
 <body>
+    <button id="open-modal">Open Modal</button>
+    <div id="root"></div>
 
-
-
-
-
-    <button id="open-model">OPEN</button>
-
-
-    <div id='modal' class='modal'>
-        <div class='header'>
-
-            <div> Add Users</div>
-            <button id='close'>Close</button>
-
+    <div id="modal" class="modal">
+        <div>
+            <div>Add Info</div>
         </div>
-        <div class='body'>
-            <div id='emailBox'>
-                Email
-            </div>
-            <input type='text' id='email'>
-            <div id='emailError'></div>
-
-
-            <div id='nameBox'>
-                Name
-            </div>
-            <input type='text' id='name'>
-            <div id='nameError'></div>
+        <div class="body">
+            <input id="index" type="text" style="display: none;" />
+            <input id="email" type="text" placeholder="Email" />
+            <input id="phone" type="number" placeholder="Phone" />
         </div>
         <div class="footer">
-            <button id='cancel'> Cancel </button>
-            <button id='add'> Add </button>
+            <button id="cancel">CANCEL</button>
+            <button id="submit">Add</button>
+
         </div>
     </div>
-    <div class='modal-shadow'></div>
-    <div id='root'> </div>
 
-
-
-
+    <div class="modal-shadow"></div>
 </body>
 
 </html>
