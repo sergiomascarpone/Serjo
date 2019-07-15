@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <link rel='stylesheet' href='styles24.css'>
+    <script>
+        window.onload = () => {
+            const openModalButton = document.querySelector('#open-products');
+
+            openModalButton.addEventListener('click', () => {
+                const modal = document.querySelector('#modal');
+                modal.style.display = 'block';
+
+                const modalShadow = document.querySelector('.modal-shadow');
+                modalShadow.style.display = 'block';
+
+            })
+            const cancelModalButton = document.querySelector('#cancel');
+
+            cancelModalButton.addEventListener('click', () => {
+                const closeModal = document.querySelector('#modal');
+                closeModal.style.display = 'none';
+            })
+        };
+
+        function renderTable() {
+            const root = document.querySelector('#root');
+            root.innerHTML = '';
+            const table = document.createElement('table');
+
+            products.forEach((product) => {
+                const row = document.createElement('tr');
+
+                const nameCell = document.createElement('td');
+                nameCell.innerHTML = product.name;
+                row.appendChild(nameCell);
+
+                const phoneCell = document.createElement('td');
+                phoneCell.innerHTML = product.phone;
+                row.appendChild(phoneCell);
+
+                const discription = document.createElement('td');
+                discription.innerHTML = product.phone;
+                row.appendChild(discriptionCell);
+
+                table.appendChild(tr);
+            });
+            root.appendChild(table);
+        };
+
+
+
+    </script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <button id="open-products">Open Products</button>
+
+
+    <div id="modal" class="modal">
+        <div>Products</div>
+        <div class="body">
+            <input id="name" type="text" placeholder="Name" />
+            <input id="phone" tupe="number" placeholder="Phone" />
+            <input id="discription" typt="text" placeholder="Discription" />
+        </div>
+        <div class="footer">
+            <button id="cancel">Cancel</button>
+            <button id="add">Add</button>
+        </div>
+    </div>
+    <div class="modal-shadow"></div>
+</body>
+
+</html>
