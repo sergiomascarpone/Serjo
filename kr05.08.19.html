@@ -1,0 +1,61 @@
+<html>
+<meta charset="utf-8">
+
+<head>
+    <script>
+        function factorial(n) {
+            console.log(n)
+            if (n === 1) {
+                return 1;
+            }
+            return n * factorial(n - 1);
+        }
+        const res = factorial(5);
+        console.log(res);
+
+
+        changeTitle = (newTitle) => {
+
+        }
+        const string = "super!puper!test";
+
+        let unnownCase = "super!puper!test";
+        let cammelCase = "superPuperTest";
+        let underscored = "super_puper_test";
+
+        for (let i = 0; i < string.length; i++) {
+            const result = string[i];
+
+            if (unnownCase !== "!") {
+                unnownCase = unnownCase;
+
+                // console.log(unnownCase);
+            }
+
+            if (cammelCase !== " ") {
+                cammelCase = cammelCase;
+
+                // console.log(cammelCase);
+            }
+            if (underscored !== "_") {
+                underscored = underscored;
+
+                // console.log(underscored);
+            }
+
+            console.log(unnownCase, cammelCase, underscored);
+        }
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+
+</html>
