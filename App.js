@@ -1,88 +1,38 @@
 import React, { Component } from 'react';
+import './App.css';
+
+const imgArr = [
+  'https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg',
+  'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+  'https://image.shutterstock.com/image-photo/colorful-flower-on-dark-tropical-260nw-721703848.jpg',
+  'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg',
+
+];
 
 
 
 class App extends Component {
   state = {
-    text: '',
-    todos: [],
-    counter: 0,
+    imageIndex: 0,
+  };
+
+  handleRightClick = () => {
+    this.setState({ imageIndex: this.state.imageIndex + 1 });
   }
 
-  onTextChange = (event) => {
-    const e = event;
-
-    this.setState({ text: e.target.value });
-  }
-
-  onClickChange = () => {
-
-    const todos = [
-      ...this.state.todos,
-      {
-        id: this.state.counter,
-        text: this.state.text,
-        compleated: false,
-
-      }];
-
-    console.log(todos)
-
-    this.setState({
-      text: '',
-      todos,
-      counter: this.state.counter + 1,
-    })
-  }
-
-  onComplete = (id) => () => {
-    const todos = this.state.todos
-      .filter(todo => {
-        if (todo.id === id)
-          todo.completed = !todo.completed;
-        return todo;
-      });
-    this.setState({
-      todos,
-    })
-  }
-
-
-  onTodoDelete = (todoId) => () => {
-    const todos = this.state.todos
-      .filter(todo => todoId !== todo.id);
-
-    this.setState({
-      todos,
-    })
+  handleLeftClick = () => {
+    this.setState({ imageIndex: this.state.imageIndex - 1 });
   }
 
   render() {
     return (
 
-      <div className='App'>
-        <div>
-          <button onClick={this.onClickChange}>Add TODO</button>
-          <input
-            placeholder='text'
-            value={this.state.text}
-            onChange={this.onTextChange}
-          />
-        </div>
-        {
-          this.state.todos.map((todo) => (
-            <div key={todo.id}>
-              <span>{todo.text}</span>
+      <div className="App">
+        <img src={imgArr[this.state.imageIndex]} />
 
-              {!todo.completed > 0 &&
-                <button onClick={this.onComplete(todo.id)}>compleated</button>
-              }
+        {this.state.imageIndex !== imgArr.length - 1 && <button onClick={this.handleRightClick}>Right</button>}
+        {this.state.imageIndex !== 0 && <button onClick={this.handleLeftClick}>Left</button>}
 
-              <button onClick={this.onTodoDelete(todo.id)}>delete</button>
-
-            </div>
-          ))
-        }
       </div>
     )
   }
